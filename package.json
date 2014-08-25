@@ -1,0 +1,30 @@
+{
+  "name": "arcee",
+  "version": "0.1.0",
+  "description": "Easy configuration",
+  "author": "Médi-Rémi Hashim",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/medimatrix/arcee.git"
+  },
+  "main": "index.js",
+  "keywords": [
+    "rc",
+    "config",
+    "toml",
+    "yaml",
+    "arcee"
+  ],
+  "dependencies": {
+    "toml": "^2.0.6",
+    "yaml": "^0.2.3"
+  },
+  "devDependencies": {
+    "tap-spec": "^0.2.1",
+    "tape": "^2.14.0"
+  },
+  "scripts": {
+    "test": "./node_modules/.bin/tape test/*.js | ./node_modules/.bin/tap-spec"
+  },
+  "license": "GPL-3.0+"
+}
