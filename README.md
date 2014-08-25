@@ -27,7 +27,7 @@ config.get("app") // => {webserver: {...}, db: {...}}
 config.get("app.webserver") // => {port: 8000, ...}
 
 // Objects returned are immutable by default
-var webconf = require("app.webserver")
+var webconf = config.get("app.webserver")
 webconf.port // => 8000
 webconf.port = 80
 webconf.port // => 8000
