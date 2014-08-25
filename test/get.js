@@ -26,3 +26,19 @@ test("Can get YAML, JSON and TOML", function(t) {
 	t.ok(arcee.get("file.json").name)
 	t.ok(arcee.get("file.toml").test)
 })
+
+test("Objects can be immutable or mutable", function(t) {
+	t.plan(2)
+
+	arcee.set("get_immutable", {a: 42})
+	arcee.set("!get_mutable", {smile: "☹"})
+
+	var immutable = arcee.get("get_immutable")
+	var mutable = arcee.get("get_mutable")
+
+	immutable.a = Math.PI
+	mutable.smile = "☺"
+
+	t.equal(immutable.a, 42)
+	t.equal(mutable.smile, "☺")
+})
