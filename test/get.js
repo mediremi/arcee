@@ -6,17 +6,17 @@ test("Can get objects", function(t) {
 
 	var obj = {}
 
-	arcee.set("foo", obj)
-	arcee.set("baz.foo", obj)
+	arcee.set("can_get", obj)
+	arcee.set("test.can_get", obj)
 
-	t.equal(arcee.get("foo"), obj)
+	t.equal(arcee.get("can_get"), obj)
 
-	t.equal(arcee.get("baz.foo"), obj)
-	t.equal(arcee.get("baz").foo, obj)
+	t.equal(arcee.get("test.can_get"), obj)
+	t.equal(arcee.get("test").can_get, obj)
 })
 
 test("Can get YAML, JSON and TOML", function(t) {
-	t.plan(2)
+	t.plan(3)
 
 	arcee.set("file.yaml", "test.yml")
 	arcee.set("file.json", "../package.json")
