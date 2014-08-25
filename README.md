@@ -51,6 +51,12 @@ config.set("!app.mongodb", {a: 1, b: 2}) // => `null`
 
 Stores config.
 
+`namespace` is a string. If it contains a dot, `arcee` will separate the string
+into a namespace. For example, `"app.foo"` and `"app.bar"` will belong to the
+`app` namespace.
+
+`config` is can be an object or a file location to a JSON, YAML or TOML file.
+
 If namespace if prefixed by `!` (`!app.foo`), then the configuration is mutable.
 
 If config has already been set at the namespace given, an `Error` is returned.
