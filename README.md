@@ -72,11 +72,9 @@ $ npm install
 $ npm test
 ```
 
-## Contribute
-Read the [style guide](style-guide.md), clone the repo, create a branch and
-commit your changes.
+## Contributing
 
-Do *not* rebase.
+See [CONTRIBUTING.md](CONTRIBUTING.md)
 
 ## License
 GPLv3 or later.
