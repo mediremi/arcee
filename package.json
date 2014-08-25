@@ -24,7 +24,8 @@
     "tape": "^2.14.0"
   },
   "scripts": {
-    "test": "./node_modules/.bin/tape test/*.js | ./node_modules/.bin/tap-spec"
+    "test": "./node_modules/.bin/tape test/*.js | ./node_modules/.bin/tap-spec",
+    "lint": "jshint *.js"
   },
   "license": "GPL-3.0+"
 }
