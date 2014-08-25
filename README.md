@@ -55,7 +55,7 @@ Stores config.
 into a namespace. For example, `"app.foo"` and `"app.bar"` will belong to the
 `app` namespace.
 
-`config` is can be an object or a file location to a JSON, YAML or TOML file.
+`config` can be an object or a file location to a JSON, YAML or TOML file.
 
 If namespace if prefixed by `!` (`!app.foo`), then the configuration is mutable.
 
