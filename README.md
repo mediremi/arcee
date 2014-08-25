@@ -84,3 +84,5 @@ See [CONTRIBUTING.md](CONTRIBUTING.md)
 
 ## License
 GPLv3 or later.
+
+[LICENSE file](LICENSE)
