@@ -1,22 +1,11 @@
 var isNamespace = /\./
+var handleNamespace = require("./handle-namespace")
 
-function handleNamespace(object, properties, value) {
-	for (var i = 0, tmp = object; i < properties.length; i++) {
-		if (tmp[properties[i]]) {
-			tmp = tmp[properties[i]]
-		} else {
-			tmp = tmp[properties[i]] = {}
-		}
-	}
-
-	tmp = value
-}
-
-function store(object, property, value) {
+function store(storage, property, value) {
 	if (typeof property === "string") {
-		object[property] = value
+		storage[property] = value
 	} else if (Array.isArray(property)) {
-		handleNamespace(object, property, value)
+		handleNamespace(storage, property, value)
 	}
 }
 
