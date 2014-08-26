@@ -76,6 +76,8 @@ Returns config.
 
 If there is no config at that namespace, an `Error` is returned.
 
+The `Object` returned will be a copy of the object passed to `arcee.set`.
+
 ## Test
 
 ```sh

@@ -4,15 +4,15 @@ var arcee = require("../index")
 test("Can get objects", function(t) {
 	t.plan(3)
 
-	var obj = {}
+	var obj = {hello: "hello"}
 
 	arcee.set("can_get", obj)
 	arcee.set("test.can_get", obj)
 
-	t.equal(arcee.get("can_get"), obj)
+	t.deepEqual(arcee.get("can_get"), obj)
 
-	t.equal(arcee.get("test.can_get"), obj)
-	t.equal(arcee.get("test").can_get, obj)
+	t.deepEqual(arcee.get("test.can_get"), obj)
+	t.deepEqual(arcee.get("test").can_get, obj)
 })
 
 test("Can get YAML, JSON and TOML", function(t) {
