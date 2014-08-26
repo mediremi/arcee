@@ -11,8 +11,8 @@ test("Can set objects", function(t) {
 test("Can set from a file location", function(t) {
 	t.plan(2)
 
-	t.equal(arcee.set("can_set_file", "test.yml"), null)
-	t.equal(arcee.set("test.can_set_file", "test.yml"), null)
+	t.equal(arcee.set("can_set_file", __dirname + "/test.yml"), null)
+	t.equal(arcee.set("test.can_set_file", __dirname + "/test.yml"), null)
 })
 
 test("Throws if config has already been set", function(t) {

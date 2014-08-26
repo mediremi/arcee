@@ -18,9 +18,9 @@ test("Can get objects", function(t) {
 test("Can get YAML, JSON and TOML", function(t) {
 	t.plan(3)
 
-	arcee.set("file.yaml", "test.yml")
-	arcee.set("file.json", "../package.json")
-	arcee.set("file.toml", "test.toml")
+	arcee.set("file.yaml", __dirname + "/test.yml")
+	arcee.set("file.json", __dirname + "/../package.json")
+	arcee.set("file.toml", __dirname + "/test.toml")
 
 	t.ok(arcee.get("file.yaml").test)
 	t.ok(arcee.get("file.json").name)
