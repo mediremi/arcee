@@ -4,6 +4,8 @@ Easy node.js configuration
 
 [![Build Status](https://travis-ci.org/medimatrix/arcee.svg?branch=master)](https://travis-ci.org/medimatrix/arcee)
 
+[![NPM](https://nodei.co/npm/arcee.png?compact=true)](https://nodei.co/npm/arcee/)
+
 Arcee offers mutable and immutable configuration storage that can be shared
 between modules and workers.
 
