@@ -5,6 +5,7 @@ var toml = require("toml")
 var handleNamespace = require("./handle-namespace")
 
 var isNamespace = /\./
+var isMutable = /^!/
 
 var supportedFiletypes = {
 	yaml: yaml.eval,
@@ -13,17 +14,30 @@ var supportedFiletypes = {
 	json: JSON.parse
 }
 
-function store(storage, property, value) {
+function store(storage, property, value, mutable) {
 	if (typeof property === "string") {
 		storage[property] = value
+
+		if (!mutable) {
+			Object.freeze(storage[property])
+		}
 	} else if (Array.isArray(property)) {
-		handleNamespace(storage, property, value)
+		handleNamespace(storage, property, value, mutable)
 	}
 }
 
 module.exports = function(storage, name, config) {
+	var mutable = false
+
 	if (name in storage) {
 		return new Error(name + " has already been configured")
+	}
+
+	if (isMutable.test(name)) {
+		mutable = true
+
+		// Remove the '!' at the start
+		name = name.slice(1)
 	}
 
 	if (isNamespace.test(name)) {
@@ -38,12 +52,11 @@ module.exports = function(storage, name, config) {
 		var configType = path.extname(config).slice(1)
 
 		if (configType in supportedFiletypes) {
-			console.log(config);
 			config = supportedFiletypes[configType](fs.readFileSync(config).toString())
 		}
 	}
 
-	store(storage, name, config)
+	store(storage, name, config, mutable)
 
 	return null
 }

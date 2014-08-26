@@ -1,6 +1,6 @@
 var extend = require("deep-extend")
 
-module.exports = function(object, properties, value) {
+module.exports = function(object, properties, value, mutable) {
 	var tmp = object
 
 	properties.forEach(function(property, i) {
@@ -13,6 +13,10 @@ module.exports = function(object, properties, value) {
 
 	if (value) {
 		extend(tmp, value)
+
+		if (!mutable) {
+			Object.freeze(tmp)
+		}
 	} else {
 		return tmp
 	}
