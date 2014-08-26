@@ -28,13 +28,16 @@ test("Can get YAML, JSON and TOML", function(t) {
 })
 
 test("Objects can be immutable or mutable", function(t) {
-	t.plan(2)
+	t.plan(4)
 
 	arcee.set("get_immutable", {a: 42})
 	arcee.set("!get_mutable", {smile: "☹"})
 
 	var immutable = arcee.get("get_immutable")
 	var mutable = arcee.get("get_mutable")
+
+	t.equal(immutable instanceof Error, false)
+	t.equal(mutable instanceof Error, false)
 
 	immutable.a = Math.PI
 	mutable.smile = "☺"
