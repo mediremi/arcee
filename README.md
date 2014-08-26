@@ -71,7 +71,7 @@ Can be an object or a file location to a JSON, YAML or TOML file.
 
 If config has already been set at the namespace given, an `Error` is returned.
 
-### get
+#### get
 `function(namespace) => Object || Error`
 
 Returns config.
