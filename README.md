@@ -48,32 +48,38 @@ config.set("!app.mongodb", {a: 1})
 config.set("!app.mongodb", {a: 1, b: 2}) // => `null`
 ```
 
-### API
+## Methods
 
-#### set
-`function(namespace, config) => null || Error`
-
+### set(namespace, config)
 Stores config.
 
 `null` is returned is there were no errors.
 
-##### `namespace`
-Is a string.
-
+#### `namespace` (String)
 If it contains a dot, `arcee` will separate the string
 into a namespace. For example, `"app.foo"` and `"app.bar"` will belong to the
 `app` namespace.
 
 If namespace if prefixed by `!` (`!app.foo`), then the configuration is mutable.
 
-##### `config`
+#### `config` (Object || String)
 Can be an object or a file location to a JSON, YAML or TOML file.
 
 If config has already been set at the namespace given, an `Error` is returned.
 
-#### get
-`function(namespace) => Object || Error`
+#### Examples
 
+```js
+arcee.set("foo", {baz: 42})
+
+arcee.set("!data", {number: 42})
+
+arcee.set("app.bar", {hello: "hi"})
+
+arcee.set("file", "info.toml")
+```
+
+### get(namespace)
 Returns config.
 
 If there is no config at that namespace, an `Error` is returned.
