@@ -1,18 +1,8 @@
-var path = require("path")
-var fs = require("fs")
-var yaml = require("yaml")
-var toml = require("toml")
 var handleNamespace = require("./handle-namespace")
+var parseConfig = require("./parse-config").parse
 
 var isNamespace = /\./
 var isMutable = /^!/
-
-var supportedFiletypes = {
-	yaml: yaml.eval,
-	yml: yaml.eval,
-	toml: toml.parse,
-	json: JSON.parse
-}
 
 function store(storage, property, value, mutable) {
 	if (typeof property === "string") {
@@ -47,13 +37,8 @@ module.exports = function(storage, name, config) {
 		name = name.split(".")
 	}
 
-	if (typeof config === "string" && path.extname(config)) {
-		// Slice the returned string as it contains a dot
-		var configType = path.extname(config).slice(1)
-
-		if (configType in supportedFiletypes) {
-			config = supportedFiletypes[configType](fs.readFileSync(config).toString())
-		}
+	if (typeof config === "string") {
+		config = parseConfig(config)
 	}
 
 	store(storage, name, config, mutable)

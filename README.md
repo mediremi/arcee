@@ -86,6 +86,24 @@ If there is no config at that namespace, an `Error` is returned.
 
 The `Object` returned will be a copy of the object passed to `arcee.set`.
 
+### addExtension(ext, parser)
+Arcee supports TOML, YAML and JSON by default. If you would like to add support
+for more markup languages, use this method.
+
+#### `ext` (String)
+
+#### `parser` (Function)
+The function provided must return an object.
+
+#### Example
+
+```js
+arcee.addExtension("ini", require("ini").parse)
+```
+
+### supportedExtensions()
+Returns an array containing supported config filetypes.
+
 ## Test
 
 ```sh
