@@ -20,7 +20,7 @@ module.exports = function(storage, name, config) {
 	var mutable = false
 
 	if (name in storage) {
-		return new Error(name + " has already been configured")
+		throw new Error(name + " has already been configured")
 	}
 
 	if (isMutable.test(name)) {

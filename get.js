@@ -7,6 +7,6 @@ module.exports = function(storage, name) {
 	} else if (name in storage) {
 		return storage[name]
 	} else {
-		return new Error(name + " not set")
+		throw new Error(name + " not set")
 	}
 }

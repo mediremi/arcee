@@ -15,6 +15,14 @@ test("Can get objects", function(t) {
 	t.deepEqual(arcee.get("test").can_get, obj)
 })
 
+test("Throws error if config does not exist", function(t) {
+	t.plan(1)
+
+	t.throws(function() {
+		arcee.get("does_not_exist")
+	})
+})
+
 test("Can get YAML, JSON and TOML", function(t) {
 	t.plan(3)
 
@@ -28,16 +36,13 @@ test("Can get YAML, JSON and TOML", function(t) {
 })
 
 test("Objects can be immutable or mutable", function(t) {
-	t.plan(4)
+	t.plan(2)
 
 	arcee.set("get_immutable", {a: 42})
 	arcee.set("!get_mutable", {smile: "☹"})
 
 	var immutable = arcee.get("get_immutable")
 	var mutable = arcee.get("get_mutable")
-
-	t.equal(immutable instanceof Error, false)
-	t.equal(mutable instanceof Error, false)
 
 	immutable.a = Math.PI
 	mutable.smile = "☺"

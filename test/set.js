@@ -4,15 +4,23 @@ var arcee = require("../index")
 test("Can set objects", function(t) {
 	t.plan(2)
 
-	t.equal(arcee.set("can_set", {}), null)
-	t.equal(arcee.set("test.can_set", {}), null)
+	t.doesNotThrow(function() {
+		arcee.set("can_set", {})
+	})
+	t.doesNotThrow(function() {
+		arcee.set("test.can_set", {})
+	})
 })
 
 test("Can set from a file location", function(t) {
 	t.plan(2)
 
-	t.equal(arcee.set("can_set_file", __dirname + "/test.yml"), null)
-	t.equal(arcee.set("test.can_set_file", __dirname + "/test.yml"), null)
+	t.doesNotThrow(function() {
+		arcee.set("can_set_file", __dirname + "/test.yml")
+	})
+	t.doesNotThrow(function() {
+		arcee.set("test.can_set_file", __dirname + "/test.yml")
+	})
 })
 
 test("Can add to supported file extensions", function(t) {
@@ -39,6 +47,6 @@ test("Throws if config has already been set", function(t) {
 	arcee.set("test.set_throws", {})
 
 	t.throws(function() {
-		throw arcee.set("test.set_throws", {})
+		arcee.set("test.set_throws", {})
 	})
 })

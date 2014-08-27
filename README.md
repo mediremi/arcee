@@ -39,13 +39,13 @@ webconf.port // => 8000
 // To allow mutable config, prefix namespace by '!'
 config.set("!app.foo", {...})
 
-// Trying to set config again returns an error...
+// Trying to set config again throws an error...
 config.set("app.mongodb", {a: 1})
 config.set("app.mongodb", {a: 1, b: 2}) // => Error
 
 // ...unless that particular configuration is mutable
 config.set("!app.mongodb", {a: 1})
-config.set("!app.mongodb", {a: 1, b: 2}) // => `null`
+config.set("!app.mongodb", {a: 1, b: 2})
 ```
 
 ## Methods
@@ -53,7 +53,8 @@ config.set("!app.mongodb", {a: 1, b: 2}) // => `null`
 ### set(namespace, config)
 Stores config.
 
-`null` is returned is there were no errors.
+Throws an error if config has already been set at the namespace and the config
+is not mutable.
 
 #### `namespace` (String)
 If it contains a dot, `arcee` will separate the string
@@ -64,8 +65,6 @@ If namespace if prefixed by `!` (`!app.foo`), then the configuration is mutable.
 
 #### `config` (Object || String)
 Can be an object or a file location to a JSON, YAML or TOML file.
-
-If config has already been set at the namespace given, an `Error` is returned.
 
 #### Examples
 
@@ -82,7 +81,7 @@ arcee.set("file", "info.toml")
 ### get(namespace)
 Returns config.
 
-If there is no config at that namespace, an `Error` is returned.
+If there is no config at that namespace, an `Error` is thrown.
 
 The `Object` returned will be a copy of the object passed to `arcee.set`.
 
