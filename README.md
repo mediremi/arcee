@@ -3,9 +3,7 @@ Easy node.js configuration
 ---
 
 [![Build Status](https://travis-ci.org/medimatrix/arcee.svg?branch=master)](https://travis-ci.org/medimatrix/arcee)
-
 ![David DM](https://david-dm.org/medimatrix/arcee.svg)
-
 [![Code Climate](https://codeclimate.com/github/medimatrix/arcee/badges/gpa.svg)](https://codeclimate.com/github/medimatrix/arcee)
 
 [![NPM](https://nodei.co/npm/arcee.png?compact=true)](https://nodei.co/npm/arcee/)
