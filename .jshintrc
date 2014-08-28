@@ -4,5 +4,6 @@
 	"unused": true,
 	"quotmark": "double",
 	"node": true,
-	"browser": true
+	"browser": true,
+	"evil": true
 }
