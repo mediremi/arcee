@@ -106,6 +106,9 @@ arcee.addExtension("ini", require("ini").parse)
 Returns an array containing supported config filetypes.
 
 ## Test
+Arcee has test coverage of 100%. You can check that yourself by running
+`npm run coverage` (you will need to install
+[covert](https://www.npmjs.org/package/covert) first).
 
 ```sh
 $ cd node_modules/arcee
