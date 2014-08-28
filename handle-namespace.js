@@ -4,10 +4,10 @@ module.exports = function(object, properties, value, mutable) {
 	var tmp = object
 
 	properties.forEach(function(property, i) {
-		if (tmp[properties[i]]) {
-			tmp = tmp[properties[i]]
+		if (property in tmp) {
+			tmp = tmp[property]
 		} else if (value) {
-			tmp = tmp[properties[i]] = {}
+			tmp = tmp[property] = {}
 		}
 	})
 
