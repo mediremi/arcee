@@ -1,0 +1,2 @@
+exports.isNamespace = /\./
+exports.isMutable = /^!/

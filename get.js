@@ -1,5 +1,5 @@
-var isNamespace = /\./
 var handleNamespace = require("./handle-namespace")
+var isNamespace = require("./regexps").isNamespace
 
 module.exports = function(storage, name) {
 	if (isNamespace.test(name))	{

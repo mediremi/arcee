@@ -1,8 +1,10 @@
 var handleNamespace = require("./handle-namespace")
 var parseConfig = require("./parse-config").parse
 
-var isNamespace = /\./
-var isMutable = /^!/
+// When node.js supports destructuring, change these two lines to
+//  `var {isNamespace, isMutable} = require("./regexps")`
+var isNamespace = require("./regexps").isNamespace
+var isMutable = require("./regexps").isMutable
 
 function store(storage, property, value, mutable) {
 	if (typeof property === "string") {
@@ -42,6 +44,4 @@ module.exports = function(storage, name, config) {
 	}
 
 	store(storage, name, config, mutable)
-
-	return null
 }
