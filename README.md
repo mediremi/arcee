@@ -6,6 +6,8 @@ Easy node.js configuration
 
 ![David DM](https://david-dm.org/medimatrix/arcee.svg)
 
+[![Code Climate](https://codeclimate.com/github/medimatrix/arcee/badges/gpa.svg)](https://codeclimate.com/github/medimatrix/arcee)
+
 [![NPM](https://nodei.co/npm/arcee.png?compact=true)](https://nodei.co/npm/arcee/)
 
 Arcee offers mutable and immutable configuration storage that can be shared
