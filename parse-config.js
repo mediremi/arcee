@@ -5,8 +5,10 @@ var toml = require("toml")
 
 var supportedExtensions = {}
 
-function readFile(fileLocation) {
-	return fs.readFileSync(fileLocation).toString()
+function readFile(fileLocation, configType) {
+	var parser = supportedExtensions[configType]
+
+	return parser(fs.readFileSync(fileLocation).toString())
 }
 
 function storeExt(store, fn) {
@@ -15,7 +17,7 @@ function storeExt(store, fn) {
 	}
 }
 
-exports.addExtension = function(ext, fn) {
+function addExtension(ext, fn) {
 	if (typeof ext === "string") {
 		supportedExtensions[ext] = fn
 	} else if (Array.isArray(ext)) {
@@ -23,9 +25,11 @@ exports.addExtension = function(ext, fn) {
 	}
 }
 
-exports.addExtension(["yaml", "yml"], yaml.eval)
-exports.addExtension("toml", toml.parse)
-exports.addExtension("json", JSON.parse)
+addExtension(["yaml", "yml"], yaml.eval)
+addExtension("toml", toml.parse)
+addExtension("json", JSON.parse)
+
+exports.addExtension = addExtension
 
 exports.supportedExtensions = function() {
 	return Object.keys(supportedExtensions)
@@ -36,7 +40,7 @@ exports.parse = function(fileLocation) {
 	var configType = path.extname(fileLocation).slice(1)
 
 	if (exports.supportedExtensions().indexOf(configType) !== -1) {
-		return supportedExtensions[configType](readFile(fileLocation))
+		return readFile(fileLocation, configType)
 	} else {
 		throw new Error("Filetype " + configType + " not supported")
 	}
