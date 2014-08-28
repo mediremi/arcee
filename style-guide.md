@@ -90,7 +90,7 @@ Use named functions. They make stack traces a lot easier to read.
 
 ### Callbacks, Sync/async Style ###
 
-Use the synchronous/blocking versions of things as much as possible. If async is needed, use promises.
+Use the synchronous/blocking versions of things only. Nothing is async in arcee.
 
 
 ## Case, naming, etc. ##
