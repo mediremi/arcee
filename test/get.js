@@ -24,15 +24,17 @@ test("Throws error if config does not exist", function(t) {
 })
 
 test("Can get YAML, JSON and TOML", function(t) {
-	t.plan(3)
+	t.plan(4)
 
 	arcee.set("file.yaml", __dirname + "/test.yml")
-	arcee.set("file.json", __dirname + "/../package.json")
+	arcee.set("file.json", __dirname + "/test.json")
 	arcee.set("file.toml", __dirname + "/test.toml")
+	arcee.set("file.js", __dirname + "/../index.js")
 
-	t.ok(arcee.get("file.yaml").test)
-	t.ok(arcee.get("file.json").name)
-	t.ok(arcee.get("file.toml").test)
+	t.ok("test" in arcee.get("file.yaml"))
+	t.ok("test" in arcee.get("file.json"))
+	t.ok("test" in arcee.get("file.toml"))
+	t.ok("set" in arcee.get("file.js"))
 })
 
 test("Objects can be immutable or mutable", function(t) {

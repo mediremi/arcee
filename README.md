@@ -66,7 +66,7 @@ into a namespace. For example, `"app.foo"` and `"app.bar"` will belong to the
 If namespace if prefixed by `!` (`!app.foo`), then the configuration is mutable.
 
 #### `config` (Object || String)
-Can be an object or a file location to a JSON, YAML or TOML file.
+Can be an object or a file location to a JSON, YAML, TOML or JavaScript file.
 
 #### Examples
 
@@ -78,6 +78,8 @@ arcee.set("!data", {number: 42})
 arcee.set("app.bar", {hello: "hi"})
 
 arcee.set("file", "info.toml")
+
+arcee.set("commonjs_file", "config.js")
 ```
 
 ### get(namespace)
@@ -87,8 +89,8 @@ If there is no config at that namespace, an `Error` is thrown.
 
 The `Object` returned will be a copy of the object passed to `arcee.set`.
 
-### addExtension(ext, parser)
-Arcee supports TOML, YAML and JSON by default. If you would like to add support
+### addExtension(ext, parser, passFileLocation)
+Arcee supports TOML, YAML, CommonJS and JSON by default. If you would like to add support
 for more markup languages, use this method.
 
 #### `ext` (String)
@@ -96,10 +98,16 @@ for more markup languages, use this method.
 #### `parser` (Function)
 The function provided must return an object.
 
+#### `passFileLocation` (Boolean)
+If true, the file location is passed to `parser` instead of the contents of the
+file.
+
 #### Example
 
 ```js
 arcee.addExtension("ini", require("ini").parse)
+
+arcee.addExtension("common-js", require, true)
 ```
 
 ### supportedExtensions()

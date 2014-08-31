@@ -8,7 +8,11 @@ var supportedExtensions = {}
 function readFile(fileLocation, configType) {
 	var parser = supportedExtensions[configType]
 
-	return parser(fs.readFileSync(fileLocation).toString())
+	if (parser._passFileLocation) {
+		return parser(fileLocation)
+	} else {
+		return parser(fs.readFileSync(fileLocation).toString())
+	}
 }
 
 function storeExt(store, fn) {
@@ -17,7 +21,11 @@ function storeExt(store, fn) {
 	}
 }
 
-function addExtension(ext, fn) {
+function addExtension(ext, fn, passFileLocation) {
+	if (passFileLocation) {
+		fn._passFileLocation = true
+	}
+
 	if (typeof ext === "string") {
 		supportedExtensions[ext] = fn
 	} else if (Array.isArray(ext)) {
@@ -28,6 +36,7 @@ function addExtension(ext, fn) {
 addExtension(["yaml", "yml"], yaml.eval)
 addExtension("toml", toml.parse)
 addExtension("json", JSON.parse)
+addExtension("js", require, true)
 
 exports.addExtension = addExtension
 
