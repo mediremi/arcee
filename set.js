@@ -1,8 +1,6 @@
 var handleNamespace = require("./handle-namespace")
 var parseConfig = require("./parse-config").parse
 
-// When node.js supports destructuring, change these two lines to
-//  `var {isNamespace, isMutable} = require("./regexps")`
 var isNamespace = require("./regexps").isNamespace
 var isMutable = require("./regexps").isMutable
 
