@@ -2,17 +2,29 @@ var test = require("tape")
 var arcee = require("../index")
 
 test("Can get objects", function(t) {
-	t.plan(3)
+	t.plan(4)
 
 	var obj = {hello: "hello"}
 
 	arcee.set("can_get", obj)
 	arcee.set("test.can_get", obj)
 
+	arcee.set("deep", {
+		a: {
+			b: {
+				c: {
+					d: 42
+				}
+			}
+		}
+	})
+
 	t.deepEqual(arcee.get("can_get"), obj)
 
 	t.deepEqual(arcee.get("test.can_get"), obj)
 	t.deepEqual(arcee.get("test").can_get, obj)
+
+	t.deepEqual(arcee.get("deep.a.b.c.d"), 42)
 })
 
 test("Throws error if config does not exist", function(t) {

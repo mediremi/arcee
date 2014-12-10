@@ -32,6 +32,21 @@ config.get("app") // => {webserver: {...}, db: {...}}
 // Get only webserver data
 config.get("app.webserver") // => {port: 8000, ...}
 
+// Namespace can be very, very deep
+config.set("deep", {
+  a: {
+    b: {
+      c: {
+	    d: {
+	     e: 42
+        }
+      }
+    }
+  }
+})
+
+config.get("deep.a.b.c.d") // => {e: 42}
+
 // Objects returned are immutable by default
 var webconf = config.get("app.webserver")
 webconf.port // => 8000
